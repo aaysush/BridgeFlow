@@ -1,11 +1,6 @@
 # BridgeFlow
 FlaskDBoost is a containerized two-tier web application built with Flask and MySQL. It demonstrates how to run a web application and a database in separate Docker containers while connecting them through a custom Docker network.
 
-
-make
-
-Here’s a concise summary of the commands and steps you used for your **two-tier Flask + MySQL Docker project**, which you can put in a `README.md`:
-
 ---
 
 ### Project Setup Commands
