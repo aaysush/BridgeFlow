@@ -86,16 +86,13 @@ docker logs flask-app
 
 
 ### Attach a volume
-Here’s your content formatted nicely in GitHub-flavored Markdown for a README:
 
-````markdown
-### Attach a Volume
+
 
 1. **Create a Docker Volume**
 
-   Open your terminal or PowerShell and run:
-
-   ```bash
+````bash
+ 
    docker volume create mysqldatavolume
 ````
 
