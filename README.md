@@ -3,39 +3,55 @@ FlaskDBoost is a containerized two-tier web application built with Flask and MyS
 
 ---
 
-### Project Setup Commands
+## Features
 
-1. **Run MySQL container**
+* Flask web app with MySQL backend
+* Dockerized environment for easy setup
+* Uses a custom Docker network to connect containers
+* REST API for inserting and viewing messages
+
+## Prerequisites
+
+* [Docker](https://www.docker.com/) installed
+* Basic knowledge of Flask and MySQL
+
+## Setup Instructions
+
+### 1. Pull the MySQL Docker image
 
 ```bash
-docker run -d --name databasemysql -e MYSQL_ROOT_PASSWORD=rootpass -p 3306:3306 mysql:latest
+docker pull mysql:latest
 ```
 
-2. **Create Docker network**
+### 2. Create a Docker network
 
 ```bash
 docker network create flasksql
 ```
 
-3. **Connect MySQL container to network**
+### 3. Run the MySQL container
 
 ```bash
-docker network connect flasksql databasemysql
+docker run -d --name databasemysql \
+  --network flasksql \
+  -e MYSQL_ROOT_PASSWORD=rootpass \
+  -p 3306:3306 \
+  mysql:latest
 ```
 
-4. **Create database inside MySQL container**
+### 4. Create a database inside MySQL
 
 ```bash
 docker exec -it databasemysql mysql -uroot -prootpass -e "CREATE DATABASE mydb;"
 ```
 
-5. **Build Flask app image**
+### 5. Build the Flask app Docker image
 
 ```bash
 docker build -t flask-app-image .
 ```
 
-6. **Run Flask container on the same network**
+### 6. Run the Flask container
 
 ```bash
 docker run -d --name flask-app \
@@ -48,24 +64,32 @@ docker run -d --name flask-app \
   flask-app-image
 ```
 
-7. **Check running containers**
+### 7. Verify containers and network
 
 ```bash
 docker ps
-```
-
-8. **Inspect network to see connected containers**
-
-```bash
 docker network inspect flasksql
 ```
 
-9. **Check logs if Flask container fails**
+### 8. Access the app
 
-```bash
-docker logs flask-app
+Open your browser and go to:
+
 ```
+http://localhost:5000
+```
+
+## Notes
+
+* Flask app uses environment variables to connect to MySQL
+* Database is created if it does not exist
+* All containers are connected through the `flasksql` network
+
+## License
+
+This project is licensed under the **MIT License** – see the LICENSE file for details.
 
 ---
 
-If you want, I can **write a full `README.md` for this project**, including **description, setup steps, and how to run it**, ready to paste into GitHub. Do you want me to do that?
+If you want, I can also **make an even shorter, super clean “cheat-sheet style” README** for copy-pasting commands easily. This is useful for a GitHub project that’s mostly about Docker commands. Do you want me to do that?
+
