@@ -103,3 +103,11 @@ docker volume ls
 ```bash
 docker volume inspect mysqldatavolume
 ```
+ 4 **Make a container**
+
+
+```bash
+docker run -d --name mymysql -e MYSQL_ROOT_PASSWORD=rootpass -e MYSQL_DATABASE=mydb -v mysqldatavolume:/var/lib/mysql mysql:8.0
+```
+
+This will create and run the MySQL container with the volume attached in a single line.
