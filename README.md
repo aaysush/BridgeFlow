@@ -83,3 +83,30 @@ docker network inspect flasksql
 ```bash
 docker logs flask-app
 ```
+
+
+### Attach a volume
+Here’s your content formatted nicely in GitHub-flavored Markdown for a README:
+
+````markdown
+### Attach a Volume
+
+1. **Create a Docker Volume**
+
+```bash
+   docker volume create mysqldatavolume
+````
+
+2. **Verify the volume exists**
+
+   ```bash
+   docker volume ls
+   ```
+
+3. **Inspect the volume to see its location on the host**
+
+   ```bash
+   docker volume inspect mysqldatavolume
+   ```
+
+
