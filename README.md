@@ -103,6 +103,3 @@ docker volume ls
 ```bash
 docker volume inspect mysqldatavolume
 ```
-
-```
-```
