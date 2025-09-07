@@ -93,7 +93,9 @@ Here’s your content formatted nicely in GitHub-flavored Markdown for a README:
 
 1. **Create a Docker Volume**
 
-```bash
+   Open your terminal or PowerShell and run:
+
+   ```bash
    docker volume create mysqldatavolume
 ````
 
@@ -109,4 +111,4 @@ Here’s your content formatted nicely in GitHub-flavored Markdown for a README:
    docker volume inspect mysqldatavolume
    ```
 
-
+```
