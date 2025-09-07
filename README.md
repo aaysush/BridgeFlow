@@ -84,26 +84,25 @@ docker network inspect flasksql
 docker logs flask-app
 ```
 
-
-### Attach a volume
-
-
+### Attach a Volume
 
 1. **Create a Docker Volume**
 
-````bash
- 
-   docker volume create mysqldatavolume
+```bash
+docker volume create mysqldatavolume
 ````
 
 2. **Verify the volume exists**
 
-   ```bash
-   docker volume ls
-   ```
+```bash
+docker volume ls
+```
 
 3. **Inspect the volume to see its location on the host**
 
-   ```bash
-   docker volume inspect mysqldatavolume
-   ```
+```bash
+docker volume inspect mysqldatavolume
+```
+
+```
+```
