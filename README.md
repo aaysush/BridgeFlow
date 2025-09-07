@@ -17,41 +17,43 @@ FlaskDBoost is a containerized two-tier web application built with Flask and MyS
 
 ## Setup Instructions
 
-### 1. Pull the MySQL Docker image
+1. Pull the MySQL Docker image
 
 ```bash
 docker pull mysql:latest
 ```
 
-### 2. Create a Docker network
+2. **Run MySQL container**
+
+```bash
+docker run -d --name databasemysql -e MYSQL_ROOT_PASSWORD=rootpass -p 3306:3306 mysql:latest
+```
+
+3. **Create Docker network**
 
 ```bash
 docker network create flasksql
 ```
 
-### 3. Run the MySQL container
+4. **Connect MySQL container to network**
 
 ```bash
-docker run -d --name databasemysql \
-  --network flasksql \
-  -e MYSQL_ROOT_PASSWORD=rootpass \
-  -p 3306:3306 \
-  mysql:latest
+docker network connect flasksql databasemysql
 ```
 
-### 4. Create a database inside MySQL
+5. **Create database inside MySQL container**
 
 ```bash
 docker exec -it databasemysql mysql -uroot -prootpass -e "CREATE DATABASE mydb;"
 ```
 
-### 5. Build the Flask app Docker image
+6. **Build Flask app image**
 
 ```bash
 docker build -t flask-app-image .
 ```
 
-### 6. Run the Flask container
+7. **Run Flask container on the same network**
 
 ```bash
 docker run -d --name flask-app \
@@ -64,32 +66,20 @@ docker run -d --name flask-app \
   flask-app-image
 ```
 
-### 7. Verify containers and network
+8. **Check running containers**
 
 ```bash
 docker ps
+```
+
+9. **Inspect network to see connected containers**
+
+```bash
 docker network inspect flasksql
 ```
 
-### 8. Access the app
+10. **Check logs if Flask container fails**
 
-Open your browser and go to:
-
+```bash
+docker logs flask-app
 ```
-http://localhost:5000
-```
-
-## Notes
-
-* Flask app uses environment variables to connect to MySQL
-* Database is created if it does not exist
-* All containers are connected through the `flasksql` network
-
-## License
-
-This project is licensed under the **MIT License** – see the LICENSE file for details.
-
----
-
-If you want, I can also **make an even shorter, super clean “cheat-sheet style” README** for copy-pasting commands easily. This is useful for a GitHub project that’s mostly about Docker commands. Do you want me to do that?
-
