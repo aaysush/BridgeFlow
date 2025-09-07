@@ -110,5 +110,3 @@ Here’s your content formatted nicely in GitHub-flavored Markdown for a README:
    ```bash
    docker volume inspect mysqldatavolume
    ```
-
-```
